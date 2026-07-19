@@ -76,6 +76,7 @@ Never commit `.env.local` or an API key.
 - Findings require a short supporting excerpt from the supplied offer.
 - The model is instructed not to invent market benchmarks, legal conclusions, competing offers, or candidate circumstances.
 - Missing terms are labeled as missing instead of being filled with assumptions.
+- Hourly, weekly, monthly, and annual pay periods are preserved rather than silently converted.
 - Users are advised to remove names and sensitive identifiers before analysis.
 - Results are educational and should be verified with the employer or a qualified professional.
 

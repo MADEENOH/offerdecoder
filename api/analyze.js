@@ -16,14 +16,15 @@ const analysisSchema = {
       type: "object",
       additionalProperties: false,
       properties: {
-        baseSalary: numberOrNull,
+        basePayAmount: numberOrNull,
+        basePayPeriod: { type: "string", enum: ["hour", "week", "month", "year", "other", "not_stated"] },
         currency: stringOrNull,
         guaranteedCash: { type: "array", items: { type: "string" } },
         conditionalCash: { type: "array", items: { type: "string" } },
         equity: { type: "array", items: { type: "string" } },
         benefits: { type: "array", items: { type: "string" } }
       },
-      required: ["baseSalary", "currency", "guaranteedCash", "conditionalCash", "equity", "benefits"]
+      required: ["basePayAmount", "basePayPeriod", "currency", "guaranteedCash", "conditionalCash", "equity", "benefits"]
     },
     dimensions: {
       type: "array",
@@ -68,6 +69,7 @@ Your job is to help a job candidate understand what the document says, what is u
 Rules:
 - Quote short, exact excerpts for every finding. If no supporting clause exists, do not create the finding.
 - Clearly distinguish guaranteed compensation from discretionary, conditional, or equity compensation.
+- Preserve the document's pay period. Do not convert an hourly, weekly, or monthly amount into an annual salary.
 - Use "not stated" for missing information rather than assuming standard terms.
 - A concern means the candidate should review or clarify it; it is not a legal conclusion.
 - Include positive findings when the document contains unusually clear or candidate-friendly language.

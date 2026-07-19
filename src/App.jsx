@@ -103,9 +103,9 @@ function CompensationList({ title, items, tone = "slate" }) {
 
 function AnalysisResults({ analysis, selected, setSelected, openId, setOpenId }) {
   const money = analysis.compensation;
-  const salary = money.baseSalary == null
+  const basePay = money.basePayAmount == null
     ? "Not stated"
-    : new Intl.NumberFormat("en-US", { style: "currency", currency: money.currency || "USD", maximumFractionDigits: 0 }).format(money.baseSalary);
+    : `${new Intl.NumberFormat("en-US", { style: "currency", currency: money.currency || "USD", maximumFractionDigits: 0 }).format(money.basePayAmount)}${money.basePayPeriod && money.basePayPeriod !== "not_stated" ? `/${money.basePayPeriod}` : ""}`;
 
   return (
     <div className="space-y-5">
@@ -121,7 +121,7 @@ function AnalysisResults({ analysis, selected, setSelected, openId, setOpenId })
               </div>
             </div>
             <div className="rounded-2xl bg-white/10 px-5 py-3 text-right">
-              <p className="text-xs text-slate-300">Base salary</p><p className="mt-1 text-xl font-bold text-cyan-300">{salary}</p>
+              <p className="text-xs text-slate-300">Base pay</p><p className="mt-1 text-xl font-bold text-cyan-300">{basePay}</p>
             </div>
           </div>
           <p className="mt-5 max-w-3xl text-sm leading-6 text-slate-200">{analysis.overallAssessment}</p>
